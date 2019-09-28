@@ -6,15 +6,17 @@ import BarChart from './components/barChart';
 class App extends React.Component {
 
   state = {
-    data: Data.data[0].temperature,
+    data: Data.data[0],
     width: 700,
     height: 500
   }
   render(){
     return (
       <div className="App">
-        <BarChart data={this.state.data} width={this.state.width} height={this.state.height} />
-        <div id ="barChart"></div>
+        <BarChart data={this.state.data.temperature} width={this.state.width} height={this.state.height} id = "temperature" />
+        <BarChart data={this.state.data.pressure} width={this.state.width} height={this.state.height} id = "temperature" />
+        <div id ="temperature"></div>
+        <div id ="pressure"></div>
       </div>
     );
   }
