@@ -6,6 +6,7 @@ render() {
   const {options,selectedOptions,handleChange}=this.props;
   return (
       <div className="filter">
+      Device: {" "}
           <select className="select-text" ref="selectedOptions" onChange={(e) => handleChange(e)}>
           {options.map((item,index)=>{
               return <option id={item} key={index} value={item}>{item}</option>
