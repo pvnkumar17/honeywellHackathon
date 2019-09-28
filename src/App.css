@@ -24,4 +24,10 @@
 #barChart {
   display: table;
   margin: 0 auto;
+  border: 1px solid #000;
+  
+}
+.container{
+  height: 100%;
+  text-align: center;
 }
