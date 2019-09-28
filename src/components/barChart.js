@@ -2,11 +2,26 @@ import React, {Component} from 'react';
 import * as d3 from "d3";
 
 class BarChart extends Component {
-    componentDidMount() {
-        this.drawChart();
+
+    state = {
+        data: this.props.data || [50, 60, 60, 60, 90, 70, 50, 55, 60, 52.5]
     }
-    drawChart() {
-        const {data, width, height, id} = this.props;
+    componentDidMount() {
+        this.drawChart(this.state.data);
+    }
+
+    getDerivedStateFromProps(){
+
+    }
+
+    componentWillReceiveProps(nextProps, prevProps) {
+        if(nextProps != prevProps) {
+            const data = nextProps.data;
+            this.setState({data})
+        }
+    }
+    drawChart(data) {
+        const {width, height, id} = this.props;
         const scale = 65;
         const margin = ({top: 20, right: 40, bottom: 25, left: 20})
         const svg = d3.select(`#${id}`).append("svg")
