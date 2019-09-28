@@ -7,24 +7,24 @@ class BarChart extends Component {
         data: this.props.data || [50, 60, 60, 60, 90, 70, 50, 55, 60, 52.5]
     }
     componentDidMount() {
-        this.drawChart(this.state.data);
+        this.drawChart();
     }
-
-    getDerivedStateFromProps(){
-
-    }
+    
 
     componentWillReceiveProps(nextProps, prevProps) {
-        if(nextProps != prevProps) {
+        if(nextProps !== this.props) {
             const data = nextProps.data;
+            this.drawChart();
             this.setState({data})
         }
     }
-    drawChart(data) {
-        const {width, height, id} = this.props;
+    drawChart() {
+        const { width, height, id } = this.props;
+        const { data } = this.state;
         const scale = 65;
         const margin = ({top: 20, right: 40, bottom: 25, left: 20})
-        const svg = d3.select(`#${id}`).append("svg")
+       let svg = d3.select(`#${id}`).html('');
+         svg = d3.select(`#${id}`).append("svg")
             .attr("width", width)
             .attr("height", height);
 

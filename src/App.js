@@ -13,37 +13,39 @@ export default class App extends Component {
         deviceData:[],
         height:500,
         width:700,
-        options:[],
+        options:[1,2,3],
         selectedOptions:1
 
     }
 }
 handleChange=(event)=>{
-  debugger;
-  let value = event.target.value;
+    let value = event.target.value;
+    console.log("selected",value);
   this.setState({
     selectedOptions:value
   });
 }
 componentDidMount(){
-  const _this=this;
-  let optionArr=[];
-  axios.get('./data.json')
+    const _this = this;
+
+  /*let optionArr=[];
+    axios.get(url)
     .then(function (response) {
       // handle success
       console.log(response);
-      response.data.data.forEach((item)=>{
+      response.data.forEach((item)=>{
         optionArr.push(item.id);
       })
       _this.setState({options:optionArr});
-    })
-  const func=()=>{
+    }) */
+    const func = () => {
+      let url = "http://localhost:8080/boiler/" + _this.state.selectedOptions + "/10";
     // axios.get('./data.json')
-    axios.get('./data.json')
+      axios.get(url)
     .then(function (response) {
       // handle success
-      console.log(response);
-      _this.setState({deviceData:response.data.data});
+      /*console.log(response);*/
+      _this.setState({deviceData:response.data});
     })
     .catch(function (error) {
       // handle error
@@ -53,21 +55,21 @@ componentDidMount(){
       // always executed
     });
   }
-  setInterval(func,2000);
+  setInterval(func,3000);
  
 }
   render(){
-    debugger
     const {deviceData,options,selectedOptions} =this.state;
     return (
       <Fragment>
         <Header />
         <Filter options={options} selectedOptions={selectedOptions} handleChange={this.handleChange}/>
-        <h3 className="title">Bar Chart for Device{selectedOptions}</h3>
+            <h3 className="title">Bar Chart for Device {" "}{selectedOptions}</h3>
         <div className="container">
           {
-            deviceData.length >0 && deviceData.map((item1,index)=>{
-              if(item1.id==selectedOptions){
+                    deviceData.length > 0 && deviceData.map((item1, index) => {
+                        debugger;
+              if(item1.id[0]+""===selectedOptions+""){
                 return <Device key={index} data={item1} width={this.state.width} height={this.state.height}/>
               }
             })

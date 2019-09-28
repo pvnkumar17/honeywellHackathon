@@ -3,9 +3,19 @@ import './Device.css';
 import BarChart from '../components/barChart';
 
 export default class Device extends Component {
-  render(){
-    debugger;
-    const {data,width,height}= this.props;
+    state = {
+        data: this.props.data || [50, 60, 60, 60, 90, 70, 50, 55, 60, 52.5]
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps !== this.props) {
+            const data = nextProps.data;
+            this.setState({ data })
+        }
+    }
+    render() {
+
+        const { data } = this.state;
+    const {width,height}= this.props;
     if(data){
         return (
           <div className="deviceBody">

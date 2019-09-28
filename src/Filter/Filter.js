@@ -3,7 +3,7 @@ import './Filter.css';
 
 export default class Filter extends Component {
 render() {
-  const {options,selectedOptions,handleChange}=this.props;
+  const {options,handleChange}=this.props;
   return (
       <div className="filter">
       Device: {" "}
