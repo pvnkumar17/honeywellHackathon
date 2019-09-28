@@ -18,9 +18,9 @@ class BarChart extends Component {
         .enter()
         .append("rect")
         .attr("x", (d, i) => i * 70)
-        .attr("y", (d, i) => height - 10 * d)
+        .attr("y", (d, i) => height - 5 * d)
         .attr("width", 65)
-        .attr("height", (d, i) => d * 10)
+        .attr("height", (d, i) => d * 5)
         .attr("fill", "green");
 
         svg.selectAll("text")
@@ -29,7 +29,7 @@ class BarChart extends Component {
         .append("text")
         .text(d => d)
         .attr("x", (d, i) => i*70)
-        .attr("y", (d, i) => height - (10*d) - 3);
+        .attr("y", (d, i) => height - (5*d) - 3);
         
       }
       render(){

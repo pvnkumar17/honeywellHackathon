@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
+import * as Data from "./data";
 import BarChart from './components/barChart';
 
 class App extends React.Component {
 
   state = {
-    data: [12, 5, 6, 6, 9, 10],
+    data: Data.data[0].temperature,
     width: 700,
     height: 500
   }
